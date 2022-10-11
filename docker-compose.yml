@@ -1,0 +1,30 @@
+version: '3'
+services:
+  web:
+    #起動するイメージを指定
+    image: node
+    #環境変数を設定
+    #environment:
+      #- =DEBUG=app:*
+    tty: true
+    #ホスト側のポート：コンテナのポート
+    ports:
+      - "3000:3000"
+    #ソースコードを格納するフォルダをマウント
+    volumes:
+      - ./src:/app
+    links:
+      - db
+    #起動時に実行するコマンドを指定
+    command: npm start
+  db:
+    container_name: postgres
+    image: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgresql/init:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+    restart: always
