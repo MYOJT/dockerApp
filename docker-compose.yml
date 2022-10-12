@@ -1,6 +1,7 @@
 version: '3'
 services:
   web:
+    container_name: node
     #起動するイメージを指定
     image: node
     #環境変数を設定
@@ -16,7 +17,7 @@ services:
     links:
       - db
     #起動時に実行するコマンドを指定
-    #command: npm start
+    command: npm run start
   db:
     container_name: postgres
     image: postgres

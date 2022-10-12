@@ -54,8 +54,8 @@ connection.connect((err)=>{
 
 
 // 8080番ポートで待ちうける
-app.listen(8080, () => {
-  console.log('Running at Port 8080...');
+app.listen(3000, () => {
+  console.log('Running at Port 3000...');
 });
 // http://localhost:8080/
 
