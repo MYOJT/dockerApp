@@ -16,7 +16,7 @@ services:
     links:
       - db
     #起動時に実行するコマンドを指定
-    command: npm start
+    #command: npm start
   db:
     container_name: postgres
     image: postgres
