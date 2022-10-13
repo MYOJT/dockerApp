@@ -14,7 +14,7 @@ const path = require('path');
  * axios通信
  */
 const axios = axiosBase.create({
-  baseURL: 'http://localhost:4000',
+  baseURL: 'http://localhost:8080',
   headers:{
     'Content-Type': 'application/json',
     'X-Requested-With': 'XMLHttpRequest'
@@ -38,6 +38,8 @@ module.exports = router;
 /**
  * DB接続
  */
+// MySQLの設定
+/*
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -51,14 +53,35 @@ connection.connect((err)=>{
   }
   console.log('connect success');
 });
+*/
+// PostgreSQLの設定
+const { Pool } = require('pg')
+const pool = new Pool({
+  user: 'postgres',
+  host: 'postgres',
+  database: 'postgres_db',
+  password: 'password',
+  port: 5432,
+})
+// ルーティングの設定
+app.get('/', async(req, res) => {
+  const { rows } = await pool.query('select * from users')
+  res.send(rows)
+});
 
+const port = 8080;
 
+app.listen(port, () => {
+    console.log(`server started on port ${port}`);
+});
+/*
 // 8080番ポートで待ちうける
-app.listen(3000, () => {
-  console.log('Running at Port 3000...');
+app.listen(8080, () => {
+  console.log('Running at Port 8080...');
 });
 // http://localhost:8080/
 
+*/
 // 静的ファイルのルーティング
 app.use(express.static(path.join(__dirname, 'public')));
 
