@@ -58,7 +58,7 @@ connection.connect((err)=>{
 const { Pool } = require('pg')
 const pool = new Pool({
   user: 'postgres',
-  host: 'postgres',
+  //host: 'postgres',
   database: 'postgres_db',
   password: 'password',
   port: 5432,
