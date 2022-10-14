@@ -27,6 +27,8 @@ services:
     volumes:
       - ./postgresql/init:/docker-entrypoint-initdb.d
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
+    
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres_db
     restart: always
